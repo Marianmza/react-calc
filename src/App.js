@@ -10,6 +10,7 @@ class App extends Component {
             number2: 0,
             operand: null,
             number:  1,
+            answer:  null,
         }
     }
 
@@ -17,8 +18,14 @@ class App extends Component {
         return (
             <div className="calc">
                 <div className="display">
-                    <input type="number" value={this.state.number === 1 ? this.state.number1 : this.state.number2}
-                           disabled/>
+                    <input type="number"
+                           value={
+                               this.state.answer === null ? (
+                                    this.state.number === 1 ? this.state.number1 : this.state.number2
+                               ) : this.state.answer
+                           }
+                           disabled
+                    />
                 </div>
                 <div className="buttons">
                     <div className="left">
@@ -34,7 +41,18 @@ class App extends Component {
                         <button
                             className="equal"
                             onClick={() => {
+                                let answer = null;
+                                if ( this.state.operand === '+' ) {
+                                    answer = this.state.number1 + this.state.number2;
+                                } else if ( this.state.operand === '-' ) {
+                                    answer = this.state.number1 - this.state.number2;
+                                } else if ( this.state.operand === '*' ) {
+                                    answer = this.state.number1 * this.state.number2;
+                                } else if ( this.state.operand === '/' ) {
+                                    answer = this.state.number1 / this.state.number2;
+                                }
 
+                                this.setState({answer: answer});
                             }}
                         >
                             =
