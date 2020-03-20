@@ -21,7 +21,7 @@ class App extends Component {
                     <input type="number"
                            value={
                                this.state.answer === null ? (
-                                    this.state.number === 1 ? this.state.number1 : this.state.number2
+                                   this.state.number === 1 ? this.state.number1 : this.state.number2
                                ) : this.state.answer
                            }
                            disabled
@@ -33,7 +33,13 @@ class App extends Component {
                         <button
                             className="clear"
                             onClick={() => {
-
+                                this.setState( {
+                                    number1: 0,
+                                    number2: 0,
+                                    operand: null,
+                                    number:  1,
+                                    answer:  null,
+                                } )
                             }}
                         >
                             C
@@ -52,7 +58,7 @@ class App extends Component {
                                     answer = this.state.number1 / this.state.number2;
                                 }
 
-                                this.setState({answer: answer});
+                                this.setState( {answer: answer} );
                             }}
                         >
                             =
