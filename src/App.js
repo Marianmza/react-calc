@@ -7,7 +7,9 @@ class App extends Component {
 
         this.state = {
             number1: 0,
-            number2: 0
+            number2: 0,
+            operand: null,
+            number: 1,
         }
     }
 
@@ -15,7 +17,7 @@ class App extends Component {
         return (
             <div className="calc">
                 <div className="display">
-                    <input type="number" value={this.state.number1} disabled/>
+                    <input type="number" value={this.state.number === 1 ? this.state.number1 : this.state.number2} disabled/>
                 </div>
                 <div className="buttons">
                     <div className="left">
@@ -29,7 +31,11 @@ class App extends Component {
                                 return (
                                     <button
                                         onClick={() => {
-                                            this.setState({number1: this.state.number1 * 10 + number})
+                                            if(this.state.number == 1){
+                                                this.setState({number1: this.state.number1 * 10 + number})
+                                            }else{
+                                                this.setState({number2: this.state.number2 * 10 + number})
+                                            }
                                         }}
                                     >
                                         {number}
@@ -39,10 +45,21 @@ class App extends Component {
                         }
                     </div>
                     <div className="actions">
-                        <button>&divide;</button>
-                        <button>&times;</button>
-                        <button>-</button>
-                        <button>+</button>
+                        <button onClick={() => {
+                            this.setState({operand: '/', number: 2})
+                        }}>&divide;</button>
+
+                        <button onClick={() => {
+                            this.setState({operand: '*', number: 2})
+                        }}>&times;</button>
+
+                        <button onClick={() => {
+                            this.setState({operand: '-', number: 2})
+                        }}>-</button>
+
+                        <button onClick={() => {
+                            this.setState({operand: '+', number: 2})
+                        }}>+</button>
                     </div>
                 </div>
             </div>
