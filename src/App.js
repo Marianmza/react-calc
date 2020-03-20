@@ -29,7 +29,17 @@ class App extends Component {
                 </div>
                 <div className="buttons">
                     <div className="left">
-                        <button>0</button>
+                        <button
+                            onClick={() => {
+                                if ( this.state.number == 1 ) {
+                                    this.setState( {number1: this.state.number1 * 10} )
+                                } else {
+                                    this.setState( {number2: this.state.number2 * 10} )
+                                }
+                            }}
+                        >
+                            0
+                        </button>
                         <button
                             className="clear"
                             onClick={() => {
