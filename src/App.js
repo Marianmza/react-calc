@@ -2,75 +2,25 @@ import React, {Component} from 'react';
 import './App.css';
 
 class App extends Component {
-    constructor() {
-        super();
-
-        this.state = {
-            number1: 0,
-            number2: 0,
-            operand: null,
-            number:  1,
-            answer:  null,
-        }
-    }
-
     render() {
         return (
             <div className="calc">
                 <div className="display">
                     <input type="number"
-                           value={
-                               this.state.answer === null ? (
-                                   this.state.number === 1 ? this.state.number1 : this.state.number2
-                               ) : this.state.answer
-                           }
-                           disabled
+                           value={0}
+                           disabled={true}
+                           readOnly={true}
                     />
                 </div>
                 <div className="buttons">
                     <div className="left">
-                        <button
-                            onClick={() => {
-                                if ( this.state.number == 1 ) {
-                                    this.setState( {number1: this.state.number1 * 10} )
-                                } else {
-                                    this.setState( {number2: this.state.number2 * 10} )
-                                }
-                            }}
-                        >
+                        <button>
                             0
                         </button>
-                        <button
-                            className="clear"
-                            onClick={() => {
-                                this.setState( {
-                                    number1: 0,
-                                    number2: 0,
-                                    operand: null,
-                                    number:  1,
-                                    answer:  null,
-                                } )
-                            }}
-                        >
+                        <button className="clear">
                             C
                         </button>
-                        <button
-                            className="equal"
-                            onClick={() => {
-                                let answer = null;
-                                if ( this.state.operand === '+' ) {
-                                    answer = this.state.number1 + this.state.number2;
-                                } else if ( this.state.operand === '-' ) {
-                                    answer = this.state.number1 - this.state.number2;
-                                } else if ( this.state.operand === '*' ) {
-                                    answer = this.state.number1 * this.state.number2;
-                                } else if ( this.state.operand === '/' ) {
-                                    answer = this.state.number1 / this.state.number2;
-                                }
-
-                                this.setState( {answer: answer} );
-                            }}
-                        >
+                        <button className="equal">
                             =
                         </button>
                         {
@@ -78,15 +28,7 @@ class App extends Component {
                                 const number = i + 1;
 
                                 return (
-                                    <button
-                                        onClick={() => {
-                                            if ( this.state.number == 1 ) {
-                                                this.setState( {number1: this.state.number1 * 10 + number} )
-                                            } else {
-                                                this.setState( {number2: this.state.number2 * 10 + number} )
-                                            }
-                                        }}
-                                    >
+                                    <button>
                                         {number}
                                     </button>
                                 )
@@ -94,23 +36,13 @@ class App extends Component {
                         }
                     </div>
                     <div className="actions">
-                        <button onClick={() => {
-                            this.setState( {operand: '/', number: 2} )
-                        }}>&divide;</button>
+                        <button>&divide;</button>
 
-                        <button onClick={() => {
-                            this.setState( {operand: '*', number: 2} )
-                        }}>&times;</button>
+                        <button>&times;</button>
 
-                        <button onClick={() => {
-                            this.setState( {operand: '-', number: 2} )
-                        }}>-
-                        </button>
+                        <button>-</button>
 
-                        <button onClick={() => {
-                            this.setState( {operand: '+', number: 2} )
-                        }}>+
-                        </button>
+                        <button>+</button>
                     </div>
                 </div>
             </div>
